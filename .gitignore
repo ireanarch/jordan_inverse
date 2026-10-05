@@ -1,0 +1,23 @@
+# Скомпилированные файлы
+build/
+*.o
+*.obj
+*.exe
+
+# Исполняемый файл
+jordan_inverse
+
+# Тестовые данные
+matrix.txt
+*.dat
+
+# Редакторы
+.vscode/
+.idea/
+*.swp
+*~
+
+# Системные файлы
+.DS_Store
+Thumbs.db
+
