@@ -1,6 +1,6 @@
 CXX      := g++
-CXXFLAGS := -std=c++17 -O2 -Wall -Wextra -Iinclude
-LDFLAGS  :=
+CXXFLAGS := -std=c++17 -O3 -Wall -Wextra -Iinclude -pthread
+LDFLAGS  := -pthread
 
 TARGET   := jordan_inverse
 SRCDIR   := src
