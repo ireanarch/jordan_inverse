@@ -142,7 +142,13 @@ int main(int argc, char* argv[]) {
     double time_reinit = elapsed_seconds(t_reinit_start, t_reinit_end);
 
     auto t_res_start = std::chrono::steady_clock::now();
-    double res = inverse_residual(A2.data(), A_inv.data(), n);
+    double res;
+    if (num_threads > 1) {
+        res = inverse_residual_pthreads(A2.data(), A_inv.data(), n, num_threads);
+    }
+    else {
+        res = inverse_residual(A2.data(), A_inv.data(), n);
+    }
     auto t_res_end = std::chrono::steady_clock::now();
     double time_res = elapsed_seconds(t_res_start, t_res_end);
 
