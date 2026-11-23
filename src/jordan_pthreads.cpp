@@ -52,9 +52,11 @@ void* jordan_worker(void* arg) {
         pthread_barrier_wait(data->barrier); // Ждем подготовку
         
         if (std::isnan(aug[0])) break;
-        
         // ЭТАП 2: Исключение (все потоки)
-        for (std::size_t i = tid; i < n; i += p) {
+        int rows_per_thread = n / p;
+        int start_row = tid * rows_per_thread;
+        int end_row = (tid == p - 1) ? n : start_row + rows_per_thread;
+        for (std::size_t i = start_row; i < end_row; ++i) {
             if (i == k) continue;
             double factor = aug[i * 2 * n + k];
             if (std::fabs(factor) < tiny) continue;
